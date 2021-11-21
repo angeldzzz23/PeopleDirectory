@@ -14,7 +14,7 @@ class FilterCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        
+       
         filtLabel.translatesAutoresizingMaskIntoConstraints = false
         filtLabel.font = UIFont.systemFont(ofSize: 12)
         filtLabel.textColor = .black

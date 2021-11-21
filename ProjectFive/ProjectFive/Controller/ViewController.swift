@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class Filter {
     var name: String
     var selected: Bool = false
@@ -20,8 +21,6 @@ class Filter {
         return selected
     }
     
-    
-
 }
 
 

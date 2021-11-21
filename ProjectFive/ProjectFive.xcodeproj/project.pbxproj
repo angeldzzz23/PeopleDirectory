@@ -14,6 +14,7 @@
 		23634E59274A36DD00CAFD85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23634E57274A36DD00CAFD85 /* LaunchScreen.storyboard */; };
 		23634E67274A412A00CAFD85 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23634E66274A412A00CAFD85 /* FilterCollectionViewCell.swift */; };
 		23634E6B274A598800CAFD85 /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23634E6A274A598800CAFD85 /* FilterHeaderView.swift */; };
+		23634E70274A656E00CAFD85 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23634E6F274A656E00CAFD85 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		23634E5A274A36DD00CAFD85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23634E66274A412A00CAFD85 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		23634E6A274A598800CAFD85 /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
+		23634E6F274A656E00CAFD85 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 		23634E63274A409D00CAFD85 /* Model  */ = {
 			isa = PBXGroup;
 			children = (
+				23634E6F274A656E00CAFD85 /* Person.swift */,
 			);
 			path = "Model ";
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23634E70274A656E00CAFD85 /* Person.swift in Sources */,
 				23634E51274A36D900CAFD85 /* ViewController.swift in Sources */,
 				23634E6B274A598800CAFD85 /* FilterHeaderView.swift in Sources */,
 				23634E4D274A36D900CAFD85 /* AppDelegate.swift in Sources */,
