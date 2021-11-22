@@ -30,11 +30,11 @@ class ViewController: UIViewController {
     private var filtCollectionView: UICollectionView! // the filter collection view
     private var peopleCollectionView: UICollectionView! // the collection that displays people
     private var filterLabel: UILabel = UILabel() // the filter label that describes the collection
-    private var peopleLabel: UILabel = UILabel() // the 
+    private var peopleLabel: UILabel = UILabel() // the
     // data
     private var filtersSec: [String] = [] // the sections of the filter
-    private var filters: [Filter] = []
-    private var people: [Person] = []
+    private var filters: [Filter] = [] // the filters
+    private var people: [Person] = [] // the people
     
     // Constants for the filter collection view
     private let filtCellReuseIdentifier = "colorCellReuseIdentifier"
@@ -42,8 +42,10 @@ class ViewController: UIViewController {
     private let peopleCellReuseIdentifier = "peopleCellReuseIdentifier"
     private let peopleHeaderReuseIdentifier = "plpheaderReuse"
     private let cellPadding: CGFloat = 8
-    private let pCellPadding:CGFloat = 25
+    private let pCellPadding:CGFloat = 8
     private let sectionPadding: CGFloat = 4
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +72,11 @@ class ViewController: UIViewController {
         filterLabel.text = "FILTER BY"
         view.addSubview(filterLabel)
         
-        
+        peopleLabel.translatesAutoresizingMaskIntoConstraints = false
+        peopleLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        peopleLabel.textColor =  UIColor(red: 181/255, green: 181/255, blue: 181/255, alpha: 1)
+        peopleLabel.text = "PEOPLE"
+        view.addSubview(peopleLabel)
         
         
 //        // set up the filtCollectionView
@@ -94,7 +100,7 @@ class ViewController: UIViewController {
         // TODO 1: Instantiate collectionView
         filtCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         filtCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        filtCollectionView.backgroundColor = .red
+        filtCollectionView.backgroundColor = .clear
 
         peopleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: peopleLayout)
         peopleCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -150,9 +156,13 @@ class ViewController: UIViewController {
             filtCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -collectionViewPadding)
         ])
         
+        NSLayoutConstraint.activate([
+            peopleLabel.topAnchor.constraint(equalTo: filtCollectionView.bottomAnchor, constant: 20),
+            peopleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12)
+        ])
         
         NSLayoutConstraint.activate([
-            peopleCollectionView.topAnchor.constraint(equalTo: filtCollectionView.bottomAnchor, constant: collectionViewPadding),
+            peopleCollectionView.topAnchor.constraint(equalTo: peopleLabel.bottomAnchor, constant: 4),
             peopleCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: collectionViewPadding * 2),
             peopleCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -collectionViewPadding),
             peopleCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(collectionViewPadding * 2))
@@ -160,7 +170,17 @@ class ViewController: UIViewController {
         ])
         
     }
+    
 
+    
+//    // Finish implementing
+//    @objc func presentChangePictureViewControllerButtonPressed() {
+//        // TODO: create VC to present
+//        let presentViewController =  ChangeMyPictureViewController(nameOfChosenImg: Profile.imageName)
+//        // TODO: update delegate
+//        presentViewController.delegate = self // we are passing self as delegate
+//        self.present(presentViewController, animated: true, completion: nil)
+//    }
 
 }
 
@@ -231,6 +251,10 @@ extension ViewController: UICollectionViewDelegate {
             
             filters[indexPath.item].selected = !filters[indexPath.item].selected
             collectionView.reloadData()
+        } else {
+            let presentViewController = PersonViewController(person: people[indexPath.item])
+            //        // TODO: update delegate
+            self.present(presentViewController, animated: true, completion: nil)
         }
       
     

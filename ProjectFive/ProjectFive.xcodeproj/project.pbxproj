@@ -16,6 +16,7 @@
 		23634E6B274A598800CAFD85 /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23634E6A274A598800CAFD85 /* FilterHeaderView.swift */; };
 		23634E70274A656E00CAFD85 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23634E6F274A656E00CAFD85 /* Person.swift */; };
 		23634E73274B28B800CAFD85 /* PeopleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23634E72274B28B800CAFD85 /* PeopleCollectionViewCell.swift */; };
+		23634E76274B578E00CAFD85 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23634E75274B578E00CAFD85 /* PersonViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		23634E6A274A598800CAFD85 /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
 		23634E6F274A656E00CAFD85 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		23634E72274B28B800CAFD85 /* PeopleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCollectionViewCell.swift; sourceTree = "<group>"; };
+		23634E75274B578E00CAFD85 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				23634E50274A36D900CAFD85 /* ViewController.swift */,
+				23634E75274B578E00CAFD85 /* PersonViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 				23634E70274A656E00CAFD85 /* Person.swift in Sources */,
 				23634E51274A36D900CAFD85 /* ViewController.swift in Sources */,
 				23634E6B274A598800CAFD85 /* FilterHeaderView.swift in Sources */,
+				23634E76274B578E00CAFD85 /* PersonViewController.swift in Sources */,
 				23634E73274B28B800CAFD85 /* PeopleCollectionViewCell.swift in Sources */,
 				23634E4D274A36D900CAFD85 /* AppDelegate.swift in Sources */,
 				23634E67274A412A00CAFD85 /* FilterCollectionViewCell.swift in Sources */,
