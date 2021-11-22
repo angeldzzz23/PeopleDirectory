@@ -29,15 +29,20 @@ class ViewController: UIViewController {
     // views
     private var filtCollectionView: UICollectionView! // the filter collection view
     private var peopleCollectionView: UICollectionView! // the collection that displays people
-    private var filterLabel: UILabel = UILabel() // the filter label that describes the collection 
+    private var filterLabel: UILabel = UILabel() // the filter label that describes the collection
+    private var peopleLabel: UILabel = UILabel() // the 
     // data
     private var filtersSec: [String] = [] // the sections of the filter
     private var filters: [Filter] = []
+    private var people: [Person] = []
     
     // Constants for the filter collection view
     private let filtCellReuseIdentifier = "colorCellReuseIdentifier"
     private let filtheaderReuseIdentifier = "headerReuseIdentifier"
+    private let peopleCellReuseIdentifier = "peopleCellReuseIdentifier"
+    private let peopleHeaderReuseIdentifier = "plpheaderReuse"
     private let cellPadding: CGFloat = 8
+    private let pCellPadding:CGFloat = 25
     private let sectionPadding: CGFloat = 4
     
     override func viewDidLoad() {
@@ -48,16 +53,24 @@ class ViewController: UIViewController {
         
         filters = [Filter(name:"iOS", selected:  false), Filter(name:"Backend", selected:  false), Filter(name:"Android", selected:  false), Filter(name:"Marketing", selected:  false), Filter(name:"Design", selected:  false), Filter(name:"Indica", selected:  false),Filter(name:"Sativa", selected:  false) ]
         
-        
+        people = [
+            Person(name: "Angel Zam", year: "Freshman", skillSet: [.ios, .backend, .indica], img: UIImage(named: "Avatar 2")!),
+            Person(name: "David Ray", year: "Freshman", skillSet: [.ios, .backend, .indica], img: UIImage(named: "Avatar 2")!),
+            Person(name: "Steve J", year: "Junior", skillSet: [.ios, .backend, .indica], img: UIImage(named: "Avatar 2")!),
+            Person(name: "Marcky Jam", year: "Senior", skillSet: [.ios, .backend, .indica], img: UIImage(named: "Avatar 2")!),
+            Person(name: "Jam Bam", year: "Senior", skillSet: [.ios, .backend, .indica], img: UIImage(named: "Avatar 2")!),
+            Person(name: "Coffee Creamer", year: "Freshman", skillSet: [.ios, .backend, .indica], img: UIImage(named: "Avatar 2")!),
+            Person(name: "Mon ster", year: "Junior", skillSet: [.marketing, .backend, .indica], img: UIImage(named: "Avatar 2")!),
+            Person(name: "Red Zam", year: "Freshman", skillSet: [.ios, .sativa, .indica], img: UIImage(named: "Avatar 2")!),
+        ]
         
         filterLabel.translatesAutoresizingMaskIntoConstraints = false
-//        filterLabel.font = UIFont.systemFont(ofSize: 12)
         filterLabel.font = UIFont.boldSystemFont(ofSize: 12)
         filterLabel.textColor =  UIColor(red: 181/255, green: 181/255, blue: 181/255, alpha: 1)
-        filterLabel.text = "Filter By"
-        
- 
+        filterLabel.text = "FILTER BY"
         view.addSubview(filterLabel)
+        
+        
         
         
 //        // set up the filtCollectionView
@@ -67,32 +80,54 @@ class ViewController: UIViewController {
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = cellPadding
         layout.minimumLineSpacing = cellPadding
-//        layout.sectionInset = UIEdgeInsets(top: sectionPadding, left: 0, bottom: sectionPadding, right: 0)
-//
+
+        let peopleLayout = UICollectionViewFlowLayout()
+        peopleLayout.scrollDirection = .vertical
+        peopleLayout.minimumInteritemSpacing = pCellPadding
+        peopleLayout.minimumLineSpacing = pCellPadding
+        peopleLayout.sectionInset = UIEdgeInsets(top: pCellPadding, left: 0, bottom: pCellPadding, right: 0)
+
+        
+        
+        
+        
         // TODO 1: Instantiate collectionView
         filtCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         filtCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        filtCollectionView.backgroundColor = .clear
-//
-//        // TODO 3: Create collection view cell and register it here.
-//        // TODO 3a: Add content to collection view cell.
-//        // TODO 3b: Create function to configure collection view cell.
+        filtCollectionView.backgroundColor = .red
+
+        peopleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: peopleLayout)
+        peopleCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        peopleCollectionView.backgroundColor = .clear
+        
+        
+        
+        
+        // TODO 3: Create collection view cell and register it here.
+        // TODO 3a: Add content to collection view cell.
+        // TODO 3b: Create function to configure collection view cell.
         filtCollectionView.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: filtCellReuseIdentifier)
+        peopleCollectionView.register(PeopleCollectionViewCell.self, forCellWithReuseIdentifier: peopleCellReuseIdentifier)
+      
+        
 //        // TODO 6: Create section header and register it here.
 //        // TODO 6a: Add content to section header.
 //        // TODO 6b: Create function to configure section header.
         filtCollectionView.register(FilterHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: filtheaderReuseIdentifier)
-//
-//
-//
+        
+
+
 //        // TODO 4: Extend collection view data source.
         filtCollectionView.dataSource = self
+        peopleCollectionView.dataSource = self
 //
 //        // TODO 5: Extend collection view delegate.
         filtCollectionView.delegate = self
+        peopleCollectionView.delegate = self
 //
 //
         view.addSubview(filtCollectionView)
+        view.addSubview(peopleCollectionView)
         setupConstraints()
     }
     
@@ -114,6 +149,16 @@ class ViewController: UIViewController {
             filtCollectionView.heightAnchor.constraint(equalToConstant: 60),
             filtCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -collectionViewPadding)
         ])
+        
+        
+        NSLayoutConstraint.activate([
+            peopleCollectionView.topAnchor.constraint(equalTo: filtCollectionView.bottomAnchor, constant: collectionViewPadding),
+            peopleCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: collectionViewPadding * 2),
+            peopleCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -collectionViewPadding),
+            peopleCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(collectionViewPadding * 2))
+        
+        ])
+        
     }
 
 
@@ -121,19 +166,32 @@ class ViewController: UIViewController {
 
 
 
-//
+
 extension ViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filtersSec.count
+        
+        if collectionView == self.filtCollectionView {
+            return filtersSec.count
+        }
+        
+        // returns the number of
+        return people.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filtCellReuseIdentifier, for: indexPath) as! FilterCollectionViewCell
-//        cell.configure(for: filtersSec[indexPath.item])
-        cell.configure(filter: filters[indexPath.item])
+      
+        if collectionView == self.filtCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filtCellReuseIdentifier, for: indexPath) as! FilterCollectionViewCell
+            cell.configure(filter: filters[indexPath.item])
+            return cell
+        } else { // takes care of the second
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: peopleCellReuseIdentifier, for: indexPath) as! PeopleCollectionViewCell
+            cell.configure(person: people[indexPath.item])
+            return cell
+        }
+        
 
-        return cell
     }
 
 }
@@ -142,26 +200,40 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegateFlowLayout {
     // TODO 5a: override default flow (optional, has default flow).
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if collectionView == self.filtCollectionView {
+            let label = UILabel(frame: CGRect.zero)
+            label.text = filtersSec[indexPath.item]
+            label.sizeToFit()
+            let size = label.frame.width
 
-        let label = UILabel(frame: CGRect.zero)
-        label.text = filtersSec[indexPath.item]
-        label.sizeToFit()
-        let size = label.frame.width
-
-        return CGSize(width: size + 12, height: 32 )
+            return CGSize(width: size + 12, height: 32 )
+        } else {
+            let size = (collectionView.frame.width - (pCellPadding) ) / 2
+            
+            return CGSize(width:size, height: size )
+        }
+        
+     
 
     }
 
 }
 
+    // allows the user to select
 extension ViewController: UICollectionViewDelegate {
     // TODO 9: provide selection functionality
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        filters.forEach({$0.selected = false}) // deselects
-        
-        filters[indexPath.item].selected = !filters[indexPath.item].selected
-        collectionView.reloadData()
+    
+        // select the correct collection view
+        if collectionView == self.filtCollectionView {
+            filters.forEach({$0.selected = false}) // deselects
+            
+            filters[indexPath.item].selected = !filters[indexPath.item].selected
+            collectionView.reloadData()
+        }
+      
+    
     }
 }
 
