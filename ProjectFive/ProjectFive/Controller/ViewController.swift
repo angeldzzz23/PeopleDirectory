@@ -257,7 +257,6 @@ extension ViewController: UICollectionViewDelegate {
             self.present(presentViewController, animated: true, completion: nil)
         }
       
-    
     }
 }
 
