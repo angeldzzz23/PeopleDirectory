@@ -32,9 +32,13 @@ class ViewController: UIViewController {
     private var filterLabel: UILabel = UILabel() // the filter label that describes the collection
     private var peopleLabel: UILabel = UILabel() // the
     // data
-    private var filtersSec: [String] = [] // the sections of the filter
+    private var filtersSec: [Skill] = [] // the sections of the filter
     private var filters: [Filter] = [] // the filters
-    private var people: [Person] = [] // the people
+    private var people: [Person] = [] // people sorted by filters
+    private var flpeople: [Person] = [] // stores all of the people without being changed
+    
+    
+    
     
     // Constants for the filter collection view
     private let filtCellReuseIdentifier = "colorCellReuseIdentifier"
@@ -51,9 +55,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         // Do any additional setup after loading the view.
-       filtersSec = ["iOS", "Backend", "Android", "Marketing", "Design", "Indica", "Sativa"]
+        filtersSec = [Skill.ios, Skill.backend, Skill.android, Skill.marketing, Skill.design, Skill.indica, Skill.sativa]
         
-        filters = [Filter(name:"iOS", selected:  false), Filter(name:"Backend", selected:  false), Filter(name:"Android", selected:  false), Filter(name:"Marketing", selected:  false), Filter(name:"Design", selected:  false), Filter(name:"Indica", selected:  false),Filter(name:"Sativa", selected:  false) ]
+        filters = [Filter(name:"iOS", selected:  false), Filter(name:"Backend", selected:  false), Filter(name:"Android", selected:  false), Filter(name:"Marketing", selected:  false), Filter(name:"Design", selected:  false), Filter(name:"Indica", selected:  false), Filter(name:"Sativa", selected:  false) ]
         
         people = [
             Person(name: "Angel Zam", year: "Freshman", skillSet: [.ios, .design, .indica], img: UIImage(named: "Avatar 2")!),
@@ -65,6 +69,8 @@ class ViewController: UIViewController {
             Person(name: "Mon ster", year: "Junior", skillSet: [.marketing, .backend, .indica], img: UIImage(named: "Avatar 2")!),
             Person(name: "Red Zam", year: "Freshman", skillSet: [.ios, .sativa, .indica, .android, .design, .backend], img: UIImage(named: "Avatar 2")!),
         ]
+        
+        flpeople = people
         
         filterLabel.translatesAutoresizingMaskIntoConstraints = false
         filterLabel.font = UIFont.boldSystemFont(ofSize: 12)
@@ -80,7 +86,6 @@ class ViewController: UIViewController {
         
         
 //        // set up the filtCollectionView
-//
         // TODO 2: Setup flow layout
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -93,7 +98,9 @@ class ViewController: UIViewController {
         peopleLayout.minimumLineSpacing = pCellPadding
         peopleLayout.sectionInset = UIEdgeInsets(top: pCellPadding, left: 0, bottom: pCellPadding, right: 0)
 
-        
+    
+        // adding a title to the navigation bar
+        self.navigationItem.title = "Directory"
         
         
         
@@ -172,16 +179,6 @@ class ViewController: UIViewController {
     }
     
 
-    
-//    // Finish implementing
-//    @objc func presentChangePictureViewControllerButtonPressed() {
-//        // TODO: create VC to present
-//        let presentViewController =  ChangeMyPictureViewController(nameOfChosenImg: Profile.imageName)
-//        // TODO: update delegate
-//        presentViewController.delegate = self // we are passing self as delegate
-//        self.present(presentViewController, animated: true, completion: nil)
-//    }
-
 }
 
 
@@ -223,7 +220,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         
         if collectionView == self.filtCollectionView {
             let label = UILabel(frame: CGRect.zero)
-            label.text = filtersSec[indexPath.item]
+            label.text = filtersSec[indexPath.item].getStrSkill()
             label.sizeToFit()
             let size = label.frame.width
 
@@ -250,6 +247,17 @@ extension ViewController: UICollectionViewDelegate {
             filters.forEach({$0.selected = false}) // deselects
             
             filters[indexPath.item].selected = !filters[indexPath.item].selected
+            
+            
+            
+            people = flpeople.filter({ (p) -> Bool in
+                p.has(skill: filtersSec[indexPath.item])
+            })
+            
+        
+            
+                    peopleCollectionView.reloadData()
+            
             collectionView.reloadData()
         } else {
             let presentViewController = PersonViewController(person: people[indexPath.item])

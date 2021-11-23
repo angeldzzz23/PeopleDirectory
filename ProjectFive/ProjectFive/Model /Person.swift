@@ -31,6 +31,7 @@ enum Skill {
         }
     }
     
+    
     func getColor() -> UIColor {
         switch (self) {
         case .ios: return UIColor(red: 99/255, green: 203/255, blue: 217/255, alpha: 1)
@@ -58,4 +59,15 @@ class Person {
         self.skillSet = skillSet
         self.img = img
     }
+    
+    // checks if the skill exists
+    func has(skill: Skill)->Bool {
+        for skl in skillSet {
+            if skill == skl {
+                return true
+            }
+        }
+        return false
+    }
+    
 }
