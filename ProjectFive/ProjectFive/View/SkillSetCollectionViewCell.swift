@@ -16,10 +16,11 @@ class SkillSetCollectionViewCell: UICollectionViewCell {
         
         filtLabel.translatesAutoresizingMaskIntoConstraints = false
         filtLabel.font = UIFont.systemFont(ofSize: 12)
-        filtLabel.textColor = .black
+        filtLabel.textColor = .white
         filtLabel.text = "WEED"
         contentView.addSubview(filtLabel)
         
+        contentView.layer.cornerRadius = 10
         setUpConstraints()
     }
     
@@ -27,8 +28,9 @@ class SkillSetCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(text: String) {
+    func configure(text: String, color: UIColor) {
         filtLabel.text = text
+        contentView.backgroundColor = color
     }
     
     

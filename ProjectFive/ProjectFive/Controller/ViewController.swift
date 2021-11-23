@@ -56,14 +56,14 @@ class ViewController: UIViewController {
         filters = [Filter(name:"iOS", selected:  false), Filter(name:"Backend", selected:  false), Filter(name:"Android", selected:  false), Filter(name:"Marketing", selected:  false), Filter(name:"Design", selected:  false), Filter(name:"Indica", selected:  false),Filter(name:"Sativa", selected:  false) ]
         
         people = [
-            Person(name: "Angel Zam", year: "Freshman", skillSet: [.ios, .backend, .indica], img: UIImage(named: "Avatar 2")!),
-            Person(name: "David Ray", year: "Freshman", skillSet: [.ios, .backend, .indica], img: UIImage(named: "Avatar 2")!),
-            Person(name: "Steve J", year: "Junior", skillSet: [.ios, .backend, .indica], img: UIImage(named: "Avatar 2")!),
-            Person(name: "Marcky Jam", year: "Senior", skillSet: [.ios, .backend, .indica], img: UIImage(named: "Avatar 2")!),
+            Person(name: "Angel Zam", year: "Freshman", skillSet: [.ios, .design, .indica], img: UIImage(named: "Avatar 2")!),
+            Person(name: "David Ray", year: "Freshman", skillSet: [.ios, .backend, .indica, .sativa, .marketing, .android], img: UIImage(named: "Avatar 2")!),
+            Person(name: "Steve J", year: "Junior", skillSet: [.backend, .android, .indica, .design], img: UIImage(named: "Avatar 2")!),
+            Person(name: "Marcky Jam", year: "Senior", skillSet: [.ios, .marketing, .indica], img: UIImage(named: "Avatar 2")!),
             Person(name: "Jam Bam", year: "Senior", skillSet: [.ios, .backend, .indica], img: UIImage(named: "Avatar 2")!),
             Person(name: "Coffee Creamer", year: "Freshman", skillSet: [.ios, .backend, .indica], img: UIImage(named: "Avatar 2")!),
             Person(name: "Mon ster", year: "Junior", skillSet: [.marketing, .backend, .indica], img: UIImage(named: "Avatar 2")!),
-            Person(name: "Red Zam", year: "Freshman", skillSet: [.ios, .sativa, .indica], img: UIImage(named: "Avatar 2")!),
+            Person(name: "Red Zam", year: "Freshman", skillSet: [.ios, .sativa, .indica, .android, .design, .backend], img: UIImage(named: "Avatar 2")!),
         ]
         
         filterLabel.translatesAutoresizingMaskIntoConstraints = false

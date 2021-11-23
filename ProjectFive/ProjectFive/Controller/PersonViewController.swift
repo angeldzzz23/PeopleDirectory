@@ -25,11 +25,9 @@ class PersonViewController: UIViewController {
     private let sectionPadding: CGFloat = 4
     
     
-    
     lazy var person: Person  = Person(name: "", year: "", skillSet: [.backend, .design, .ios], img: UIImage(named: "Avatar 2")!)
     
     var skills: [String] = []
-    
     
     init(person: Person)  {
         super.init(nibName: nil, bundle: nil)
@@ -102,7 +100,7 @@ class PersonViewController: UIViewController {
         // TODO 1: Instantiate collectionView
         skillSetCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         skillSetCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        skillSetCollectionView.backgroundColor = .purple
+        skillSetCollectionView.backgroundColor = .clear
         
         // TODO 3: Create collection view cell and register it here.
         // TODO 3a: Add content to collection view cell.
@@ -199,7 +197,9 @@ extension PersonViewController: UICollectionViewDataSource {
     
     // TODO 4b: specify number of items in section (required).
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return skills.count
+        
+        
+        return person.skillSet.count
     }
     
     
@@ -208,8 +208,9 @@ extension PersonViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: skillSetReuseIdentifier, for: indexPath) as! SkillSetCollectionViewCell
         // configure data for cell
         
-        cell.configure(text: skills[indexPath.item])
-//        cell.configure(for: colors[indexPath.section][indexPath.item])// item is basically row
+        cell.configure(text: person.skillSet[indexPath.item].getStrSkill(), color: person.skillSet[indexPath.item].getColor()
+        )
+
         
         return cell
     }
