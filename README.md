@@ -1,2 +1,2 @@
 # ProjectDir
- Recreating UI using UIKit
+Displaying a list of users and filtering them by skillset using collectionviews.
