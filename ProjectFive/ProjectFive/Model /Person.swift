@@ -15,8 +15,8 @@ enum Skill {
     case android
     case marketing
     case design
-    case indica
-    case sativa
+    case proSearcher
+    case phoneDv
     
     func getStrSkill() ->String {
         
@@ -26,8 +26,8 @@ enum Skill {
         case .android: return "android"
         case .marketing: return "marketing"
         case .design: return "design"
-        case .indica: return "indica"
-        case .sativa: return "sativa"
+        case .proSearcher: return "proSearcher"
+        case .phoneDv: return "sativa"
         }
     }
     
@@ -39,8 +39,8 @@ enum Skill {
         case .android: return UIColor(red: 181/255, green: 171/255, blue: 167/255, alpha: 1)
         case .marketing: return UIColor(red: 240/255, green: 153/255, blue: 73/255, alpha: 1)
         case .design: return UIColor(red: 120/255, green: 99/255, blue: 249/255, alpha: 1)
-        case .indica: return UIColor(red: 218/255, green: 124/255, blue: 48/255, alpha: 1)
-        case .sativa: return UIColor(red: 146/255, green: 36/255, blue: 40/255, alpha: 1)
+        case .proSearcher: return UIColor(red: 218/255, green: 124/255, blue: 48/255, alpha: 1)
+        case .phoneDv: return UIColor(red: 146/255, green: 36/255, blue: 40/255, alpha: 1)
         }
     }
     

@@ -17,7 +17,7 @@ class SkillSetCollectionViewCell: UICollectionViewCell {
         filtLabel.translatesAutoresizingMaskIntoConstraints = false
         filtLabel.font = UIFont.systemFont(ofSize: 12)
         filtLabel.textColor = .white
-        filtLabel.text = "WEED"
+        filtLabel.text = "cool"
         contentView.addSubview(filtLabel)
         
         contentView.layer.cornerRadius = 10

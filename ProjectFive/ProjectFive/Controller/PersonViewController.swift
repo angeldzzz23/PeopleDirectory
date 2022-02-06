@@ -94,7 +94,7 @@ class PersonViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = cellPadding
         layout.minimumLineSpacing = cellPadding
-        layout.sectionInset = UIEdgeInsets(top: sectionPadding, left: 0, bottom: sectionPadding, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: sectionPadding, left: 5, bottom: sectionPadding, right: 5)
         
         
         // TODO 1: Instantiate collectionView

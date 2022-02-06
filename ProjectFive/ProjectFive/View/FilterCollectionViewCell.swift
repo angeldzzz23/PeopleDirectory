@@ -18,7 +18,7 @@ class FilterCollectionViewCell: UICollectionViewCell {
         filtLabel.translatesAutoresizingMaskIntoConstraints = false
         filtLabel.font = UIFont.systemFont(ofSize: 12)
         filtLabel.textColor = .black
-        filtLabel.text = "WEED"
+        filtLabel.text = " "
         contentView.addSubview(filtLabel)
         
         contentView.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1)
