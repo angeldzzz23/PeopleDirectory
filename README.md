@@ -22,14 +22,3 @@ Displaying a list of users and filtering them by skillset using collectionviews.
 
 </tr>
 </table>
-
-## 🌟 Features
-
-- [x] Creating an account
-- [x] Loggin in
-- [x] Swipping on users
-- [x] editting profile
-
-
-**Additions**
-There are still some bugs that I havent figured out. For some reason when I create an account, it doesnt log in.
